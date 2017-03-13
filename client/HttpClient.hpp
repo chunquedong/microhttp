@@ -7,13 +7,13 @@
 
 namespace httpsuite {
 
-class HttpClinet {
+class HttpClient {
     CURL *curl;
 public:
     std::string result;
 public:
-    HttpClinet();
-    ~HttpClinet();
+    HttpClient();
+    ~HttpClient();
 
     int get(const char *url);
 };
