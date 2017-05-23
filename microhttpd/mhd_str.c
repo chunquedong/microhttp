@@ -56,7 +56,7 @@
  * @param c character to check
  * @return non-zero if character is lower case letter, zero otherwise
  */
-_MHD_inline _MHD_bool
+_MHD_inline bool
 isasciilower (char c)
 {
   return (c >= 'a') && (c <= 'z');
@@ -69,7 +69,7 @@ isasciilower (char c)
  * @param c character to check
  * @return non-zero if character is upper case letter, zero otherwise
  */
-_MHD_inline _MHD_bool
+_MHD_inline bool
 isasciiupper (char c)
 {
   return (c >= 'A') && (c <= 'Z');
@@ -82,7 +82,7 @@ isasciiupper (char c)
  * @param c character to check
  * @return non-zero if character is letter in US-ASCII, zero otherwise
  */
-_MHD_inline _MHD_bool
+_MHD_inline bool
 isasciialpha (char c)
 {
   return isasciilower (c) || isasciiupper (c);
@@ -95,7 +95,7 @@ isasciialpha (char c)
  * @param c character to check
  * @return non-zero if character is decimal digit, zero otherwise
  */
-_MHD_inline _MHD_bool
+_MHD_inline bool
 isasciidigit (char c)
 {
   return (c >= '0') && (c <= '9');
@@ -108,7 +108,7 @@ isasciidigit (char c)
  * @param c character to check
  * @return non-zero if character is decimal digit, zero otherwise
  */
-_MHD_inline _MHD_bool
+_MHD_inline bool
 isasciixdigit (char c)
 {
   return isasciidigit (c) ||
@@ -123,7 +123,7 @@ isasciixdigit (char c)
  * @param c character to check
  * @return non-zero if character is decimal digit or letter, zero otherwise
  */
-_MHD_inline _MHD_bool
+_MHD_inline bool
 isasciialnum (char c)
 {
   return isasciialpha (c) || isasciidigit (c);
@@ -166,7 +166,7 @@ toasciiupper (char c)
  * Convert US-ASCII decimal digit to its value.
  *
  * @param c character to convert
- * @return value of hexadecimal digit or -1 if @ c is not hexadecimal digit
+ * @return value of decimal digit or -1 if @ c is not decimal digit
  */
 _MHD_inline int
 todigitvalue (char c)
@@ -449,95 +449,6 @@ MHD_str_to_uint64_n_ (const char * str,
               isasciidigit (str[i]) );
 
   *out_val= res;
-  return i;
-}
-
-
-/**
- * Convert hexadecimal US-ASCII digits in string to number in size_t.
- * Conversion stopped at first non-digit character.
- *
- * @param str string to convert
- * @param[out] out_val pointer to size_t to store result of conversion
- * @return non-zero number of characters processed on succeed,
- *         zero if no digit is found, resulting value is larger
- *         then possible to store in size_t or @a out_val is NULL
- */
-size_t
-MHD_strx_to_sizet_ (const char *str,
-                    size_t *out_val)
-{
-  const char * const start = str;
-  size_t res;
-  int digit;
-
-  if (!str || !out_val)
-    return 0;
-
-  res = 0;
-  digit = toxdigitvalue (*str);
-  while (digit >= 0)
-    {
-      if ( (res < (SIZE_MAX / 16)) ||
-           ( (res == (SIZE_MAX / 16)) &&
-             ((size_t)digit <= (SIZE_MAX % 16)) ) )
-        {
-          res *= 16;
-          res += digit;
-        }
-      else
-        return 0;
-      str++;
-      digit = toxdigitvalue (*str);
-    }
-
-  if (str - start > 0)
-    *out_val = res;
-  return str - start;
-}
-
-
-/**
- * Convert not more then @a maxlen hexadecimal US-ASCII digits in string
- * to number in size_t.
- * Conversion stopped at first non-digit character or after @a maxlen
- * digits.
- *
- * @param str string to convert
- * @param maxlen maximum number of characters to process
- * @param[out] out_val pointer to size_t to store result of conversion
- * @return non-zero number of characters processed on succeed,
- *         zero if no digit is found, resulting value is larger
- *         then possible to store in size_t or @a out_val is NULL
- */
-size_t
-MHD_strx_to_sizet_n_ (const char * str,
-                      size_t maxlen,
-                      size_t *out_val)
-{
-  size_t i;
-  size_t res;
-  int digit;
-  if (!str || !out_val)
-    return 0;
-
-  res = 0;
-  i = 0;
-  while ( (i < maxlen) &&
-          ((digit = toxdigitvalue (str[i])) >= 0) )
-    {
-      if ( (res > (SIZE_MAX / 16)) ||
-           ( (res == (SIZE_MAX / 16)) &&
-             ((size_t)digit > (SIZE_MAX % 16)) ) )
-        return 0;
-
-      res *= 16;
-      res += digit;
-      i++;
-    }
-
-  if (i)
-    *out_val = res;
   return i;
 }
 

@@ -20,6 +20,7 @@ class Server {
 
 public:
     int port = 8000;
+    int thread = 20;
 public:
     Server();
     ~Server();

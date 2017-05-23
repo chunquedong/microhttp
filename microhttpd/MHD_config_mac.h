@@ -13,10 +13,6 @@
 /* Define to 1 if libmicrohttpd is compiled with digest Auth support. */
 #define DAUTH_SUPPORT 1
 
-/* Define to 1 if translation of program messages to the user's native
-   language is requested. */
-/* #undef ENABLE_NLS */
-
 /* Define to 1 to enable epoll support */
 /* #undef EPOLL_SUPPORT */
 
@@ -32,27 +28,18 @@
 /* Define to 1 if you have the `gmtime_s' function in C11 form. */
 /* #undef HAVE_C11_GMTIME_S */
 
-/* Define to 1 if you have the Mac OS X function CFLocaleCopyCurrent in the
-   CoreFoundation framework. */
-#define HAVE_CFLOCALECOPYCURRENT 1
-
-/* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
-   the CoreFoundation framework. */
-#define HAVE_CFPREFERENCESCOPYAPPVALUE 1
+/* Define to 1 if you have the usable `calloc' function. */
+#define HAVE_CALLOC 1
 
 /* Have clock_gettime */
 #define HAVE_CLOCK_GETTIME 1
 
 /* Define to 1 if you have `clock_get_time', `host_get_clock_service' and
-   `mach_port_deallocate' functions. */
+ `mach_port_deallocate' functions. */
 #define HAVE_CLOCK_GET_TIME 1
 
-/* Define if the GNU dcgettext() function is already present or preinstalled.
-   */
-/* #undef HAVE_DCGETTEXT */
-
 /* Define to 1 if you have the declaration of `SOCK_NONBLOCK', and to 0 if you
-   don't. */
+ don't. */
 #define HAVE_DECL_SOCK_NONBLOCK 0
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
@@ -70,6 +57,9 @@
 /* Define to 1 if you have the <fcntl.h> header file. */
 #define HAVE_FCNTL_H 1
 
+/* Define to 1 if you have the usable `fork' function. */
+#define HAVE_FORK 1
+
 /* Define to 1 if fseeko (and presumably ftello) exists and is declared. */
 #define HAVE_FSEEKO 1
 
@@ -79,17 +69,14 @@
 /* Define to 1 if you have `gethrtime' function. */
 /* #undef HAVE_GETHRTIME */
 
-/* Define if the GNU gettext() function is already present or preinstalled. */
-/* #undef HAVE_GETTEXT */
+/* Define to 1 if you have the `[gettimeofday]' function. */
+#define HAVE_GETTIMEOFDAY 1
 
 /* Define to 1 if you have the `gmtime_r' function. */
 #define HAVE_GMTIME_R 1
 
 /* Define to 1 if you have the <gnutls/gnutls.h> header file. */
 /* #undef HAVE_GNUTLS_GNUTLS_H */
-
-/* Define if you have the iconv() function and it works. */
-#define HAVE_ICONV 1
 
 /* Provides IPv6 headers */
 #define HAVE_INET6 1
@@ -121,7 +108,7 @@
 /* Define to 1 if you have the <machine/param.h> header file. */
 #define HAVE_MACHINE_PARAM_H 1
 
-/* Define to 1 if you have the <magic.h> header file. */
+/* Define to 1 if you have the <[magic.h]> header file. */
 /* #undef HAVE_MAGIC_H */
 
 /* Define to 1 if you have the <math.h> header file. */
@@ -135,6 +122,9 @@
 
 /* Define to 1 to enable support for error messages. */
 #define HAVE_MESSAGES 1
+
+/* Define to 1 if you have the `[nanosleep]' function. */
+#define HAVE_NANOSLEEP 1
 
 /* Define to 1 if you have the <netdb.h> header file. */
 #define HAVE_NETDB_H 1
@@ -163,6 +153,19 @@
 /* Define to 1 if libmicrohttpd is compiled with postprocessor support. */
 #define HAVE_POSTPROCESSOR 1
 
+/* Define to 1 if you have the `pread' function. */
+#define HAVE_PREAD 1
+
+/* Define to 1 if you have the `pread64' function. */
+/* #undef HAVE_PREAD64 */
+
+/* Define if you have IBM i form of pthread_attr_setname_np(3) function. */
+/* #undef HAVE_PTHREAD_ATTR_SETNAME_NP_IBMI */
+
+/* Define if you have NetBSD form (or OSF1 form) of pthread_attr_setname_np(3)
+ function. */
+/* #undef HAVE_PTHREAD_ATTR_SETNAME_NP_NETBSD */
+
 /* Define to 1 if you have the <pthread.h> header file. */
 #define HAVE_PTHREAD_H 1
 
@@ -179,7 +182,7 @@
 /* #undef HAVE_PTHREAD_SETNAME_NP_GNU */
 
 /* Define if you have NetBSD form (or OSF1 form) of pthread_setname_np(3)
-   function. */
+ function. */
 /* #undef HAVE_PTHREAD_SETNAME_NP_NETBSD */
 
 /* Define if you have FreeBSD form of pthread_set_name_np(3) function. */
@@ -191,7 +194,11 @@
 /* Define to 1 if you have the `random' function. */
 #define HAVE_RANDOM 1
 
-/* Define to 1 if you have the <search.h> header file. */
+/* Define to 1 if you have the real boolean type. */
+#define HAVE_REAL_BOOL 1
+
+/* Define to 1 if you have the <search.h> header file and your system have
+ properly functioning tsearch(), tfind() and tdelete() functions */
 #define HAVE_SEARCH_H 1
 
 /* Define to 1 if you have the `sendfile64' function. */
@@ -209,9 +216,9 @@
 /* SOCK_NONBLOCK is defined in a socket header */
 /* #undef HAVE_SOCK_NONBLOCK */
 
-/* Define to 1 if you have the <stdbool.h> header file and it's required for
-   _MHD_bool. */
-/* #undef HAVE_STDBOOL_H */
+/* Define to 1 if you have the <stdbool.h> header file and <stdbool.h> defines
+ 'bool' type. */
+#define HAVE_STDBOOL_H 1
 
 /* Define to 1 if you have the <stddef.h> header file. */
 #define HAVE_STDDEF_H 1
@@ -276,11 +283,20 @@
 /* Define to 1 if you have the <time.h> header file. */
 #define HAVE_TIME_H 1
 
+/* Define to 1 if you have the `tsearch' function. */
+#define HAVE_TSEARCH 1
+
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
 
+/* Define to 1 if you have the `[usleep]' function. */
+#define HAVE_USLEEP 1
+
 /* Define to 1 if you have the `gmtime_s' function in W32 form. */
 /* #undef HAVE_W32_GMTIME_S */
+
+/* Define to 1 if you have the usable `waitpid' function. */
+#define HAVE_WAITPID 1
 
 /* Define to 1 if you have the <winsock2.h> header file. */
 /* #undef HAVE_WINSOCK2_H */
@@ -288,11 +304,8 @@
 /* Define to 1 if you have the <ws2tcpip.h> header file. */
 /* #undef HAVE_WS2TCPIP_H */
 
-/* Define to 1 if you have the `_lseeki64' function. */
-/* #undef HAVE__LSEEKI64 */
-
-/* disable HTTPS support */
-#define HTTPS_SUPPORT 0
+/* Define to 1 if libmicrohttpd is compiled with HTTPS support. */
+/* #undef HTTPS_SUPPORT */
 
 /* Define to 1 if your C compiler supports inline functions. */
 #define INLINE_FUNC 1
@@ -415,7 +428,7 @@
 #define PACKAGE_NAME "GNU Libmicrohttpd"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "GNU Libmicrohttpd 0.9.52"
+#define PACKAGE_STRING "GNU Libmicrohttpd 0.9.54"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libmicrohttpd"
@@ -424,10 +437,10 @@
 #define PACKAGE_URL "http://www.gnu.org/software/libmicrohttpd/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.9.52"
+#define PACKAGE_VERSION "0.9.54"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
-   your system. */
+ your system. */
 /* #undef PTHREAD_CREATE_JOINABLE */
 
 /* This is a Solaris system */
@@ -439,14 +452,17 @@
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
+/* Define to 1 if libmicrohttpd is compiled with HTTP Upgrade support. */
+#define UPGRADE_SUPPORT 1
+
 /* Version number of package */
-#define VERSION "0.9.52"
+#define VERSION "0.9.54"
 
 /* This is a Windows system */
 /* #undef WINDOWS */
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
-   significant byte first (like Motorola and SPARC, unlike Intel). */
+ significant byte first (like Motorola and SPARC, unlike Intel). */
 #if defined AC_APPLE_UNIVERSAL_BUILD
 # if defined __BIG_ENDIAN__
 #  define WORDS_BIGENDIAN 1
@@ -487,16 +503,13 @@
 #define _MHD_EXTERN __attribute__((visibility("default"))) extern
 
 /* Define to use eventFD for inter-thread communication */
-//#define _MHD_ITC_EVENTFD 1
+/* #undef _MHD_ITC_EVENTFD */
 
 /* Define to use pipe for inter-thread communication */
-//#define _MHD_ITC_PIPE 1
+#define _MHD_ITC_PIPE 1
 
 /* Define to use socketpair for inter-thread communication */
-#define _MHD_ITC_SOCKETPAIR 1
-
-/* Define to type which will be used as boolean type. */
-#define _MHD_bool _Bool
+/* #undef _MHD_ITC_SOCKETPAIR */
 
 /* Define to prefix which will be used with MHD inline functions. */
 #define _MHD_inline static inline __attribute__((always_inline))
@@ -514,12 +527,12 @@
 #define _XOPEN_SOURCE 700
 
 /* Define to 1 if _XOPEN_SOURCE is defined to value less than 500 and system
-   headers requre this symbol */
+ headers requre this symbol */
 /* #undef _XOPEN_SOURCE_EXTENDED */
 
 /* Define to maximum value supported by system headers if _XOPEN_SOURCE is
-   defined to value less than 500 and headers do not support
-   _XOPEN_SOURCE_EXTENDED */
+ defined to value less than 500 and headers do not support
+ _XOPEN_SOURCE_EXTENDED */
 /* #undef _XOPEN_VERSION */
 
 /* Define to 1 if it is required by headers to expose additional symbols */
@@ -528,5 +541,16 @@
 /* Define to 1 if it is required by headers to expose additional symbols */
 /* #undef __EXTENSIONS__ */
 
+/* Define to type name which will be used as boolean type. */
+/* #undef bool */
+
 /* Define curl_free() as free() if our version of curl lacks curl_free. */
 /* #undef curl_free */
+
+/* Define to value interpreted by compiler as boolean "false", if "false" is
+ not defined by system headers. */
+/* #undef false */
+
+/* Define to value interpreted by compiler as boolean "true", if "true" is not
+ defined by system headers. */
+/* #undef true */

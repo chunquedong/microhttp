@@ -71,10 +71,10 @@ bool Server::start() {
                           NULL, NULL, &request_receive, (void*)this
                           , MHD_OPTION_NOTIFY_COMPLETED, request_completed, NULL,
                           MHD_OPTION_CONNECTION_TIMEOUT, (unsigned int) 15,
-                          MHD_OPTION_THREAD_POOL_SIZE, 300,
-                          MHD_OPTION_CONNECTION_LIMIT, (unsigned int) 5000,
+                          MHD_OPTION_THREAD_POOL_SIZE, thread,
+                          MHD_OPTION_CONNECTION_LIMIT, (unsigned int) 1000,
                           MHD_OPTION_END);
-#elif 1
+#elif 0
     d = MHD_start_daemon (MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG,
                           port,
                           NULL, NULL, &request_receive, (void*)this
@@ -87,8 +87,8 @@ bool Server::start() {
                           NULL, NULL, &request_receive, (void*)this
                           , MHD_OPTION_NOTIFY_COMPLETED, request_completed, NULL,
                           MHD_OPTION_CONNECTION_TIMEOUT, (unsigned int) 15,
-                          MHD_OPTION_THREAD_POOL_SIZE, 300,
-                          MHD_OPTION_CONNECTION_LIMIT, (unsigned int) 5000,
+                          MHD_OPTION_THREAD_POOL_SIZE, thread,
+                          MHD_OPTION_CONNECTION_LIMIT, (unsigned int) 1000,
                           MHD_OPTION_END);
 #endif
     if (d == NULL)
