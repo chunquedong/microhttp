@@ -1,7 +1,7 @@
 
 
 #include "Server.hpp"
-
+#include "platform.h"
 
 using namespace httpsuite;
 
@@ -24,7 +24,7 @@ void Server::onReceive(Request &req, Response &res) {
     }
 }
 
-int Server::request_receive(void *cls,
+enum MHD_Result Server::request_receive(void *cls,
                      struct MHD_Connection *connection,
                      const char *url,
                      const char *method,
@@ -50,7 +50,7 @@ int Server::request_receive(void *cls,
     s->onReceive(*req, res);
 
     if (res.response == NULL) return MHD_NO;
-    int ret = MHD_queue_response (connection, res.status_code, res.response);
+    enum MHD_Result ret = MHD_queue_response (connection, res.status_code, res.response);
     return ret;
 }
 
@@ -81,8 +81,7 @@ bool Server::start() {
                           , MHD_OPTION_NOTIFY_COMPLETED, request_completed, NULL,
                           MHD_OPTION_END);
 #else
-    d = MHD_start_daemon (MHD_USE_POLL_INTERNALLY
-                          | MHD_USE_POLL | MHD_USE_DEBUG,
+    d = MHD_start_daemon (MHD_USE_AUTO | MHD_USE_INTERNAL_POLLING_THREAD | MHD_USE_DEBUG,
                           port,
                           NULL, NULL, &request_receive, (void*)this
                           , MHD_OPTION_NOTIFY_COMPLETED, request_completed, NULL,

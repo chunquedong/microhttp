@@ -37,7 +37,7 @@ public:
 
 /////////////////////////////
 
-    static int request_receive(void *cls,
+    static enum MHD_Result request_receive(void *cls,
                        struct MHD_Connection *connection,
                        const char *url,
                        const char *method,

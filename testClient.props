@@ -1,0 +1,14 @@
+
+
+name = testClient
+summary = http client test
+outType = exe
+srcDirs = testClient/
+depends = curl_cpp 1.0.0
+extIncDirs = ./
+win32.extLibs = ws2_32.lib
+
+debug = true
+defines = DEBUG=1
+extConfigs.cppflags = -std=c++11
+win32.extConfigs.cppflags = /std:c++14

@@ -1,7 +1,5 @@
-# httpsuite
-Cross-platform C++ library for creating an embedded HTTP server/client.
-
-Base on libmicrohttpd and curl.
+# MicroHttp
+The libmicrohttpd and curl C++ wrapper for creating an embedded HTTP server/client.
 
 # Server Example
 ```
@@ -20,6 +18,7 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 ```
+
 # Client Example
 ```
 int main(int argc, const char * argv[]) {

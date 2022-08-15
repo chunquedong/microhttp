@@ -1,0 +1,12 @@
+name = microhttpd_cpp
+summary = libmicrohttpd cpp
+outType = lib
+version = 0.9.75
+srcDirs = microhttpd/microhttpd/,microhttpd/microhttpd_ws/mhd_websocket.c,server/
+excludeSrc = connection_https\\.c|test_.*
+incDir = server/
+extIncDirs = microhttpd/include/,microhttpd/lib/,microhttpd/microhttpd/
+
+extConfigs.cppflags = -std=c++14
+win32.extConfigs.cppflags = /std:c++14
+debug = true

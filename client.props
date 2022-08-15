@@ -1,0 +1,14 @@
+name = curl_cpp
+summary = libcurl cpp
+outType = lib
+version = 1.0.0
+srcDirs = curl/,client/
+incDir = client/
+extIncDirs = ./
+
+win32.defines = CURL_DISABLE_LDAP,CURL_STATICLIB
+linux.defines = __LINUX__
+linux.extLibs = pthread,rt,z
+extConfigs.cppflags = -std=c++14
+win32.extConfigs.cppflags = /std:c++14
+debug = true

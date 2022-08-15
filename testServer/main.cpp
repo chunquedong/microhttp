@@ -1,6 +1,6 @@
 
 #include <stdlib.h>
-#include "httpsuiteServer/Server.hpp"
+#include "Server.hpp"
 using namespace httpsuite;
 
 int main(int argc, const char * argv[]) {

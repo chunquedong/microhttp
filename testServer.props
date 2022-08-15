@@ -1,0 +1,15 @@
+
+
+name = testServer
+summary = http server test
+outType = exe
+srcDirs = testServer/
+depends = microhttpd_cpp 0.9.75
+
+extIncDirs = microhttpd/include/
+win32.extLibs = ws2_32.lib
+
+debug = true
+defines = DEBUG=1
+extConfigs.cppflags = -std=c++11
+win32.extConfigs.cppflags = /std:c++14

@@ -1,6 +1,6 @@
 
 //#include <stdlib.h>
-#include "httpsuiteClient/HttpClient.hpp"
+#include "HttpClient.hpp"
 using namespace httpsuite;
 
 int main(int argc, const char * argv[]) {
